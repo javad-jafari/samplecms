@@ -37,8 +37,9 @@
 
 
 
-<form action="" method="post">
-{{form}}
+<form action="{% url 'addtobasket' %}" method="post">
+    {% csrf_token %}
+    {{form}}
 <input type="submit" value="buy">
 </form>
 </div>
