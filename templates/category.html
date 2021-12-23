@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="latestcars">
+	<h1 class="text-center">
+        &bullet; CARS BY CATEGORY
+        {% with object_list|first as first_browser %}
+        {{ first_browser.category }}
+        {% endwith %}
+        &bullet;</h1>
+</div>
+
+<!-- ________________________Latest Cars Image Thumbnail________________-->
+<div class="grid container" id='costom'>
+    <div class="row">
+
+        {% for object in object_list %}
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="txthover">
+                <img src="{{object.image.url}}" alt="car1">
+                    <div class="txtcontent">
+
+                        <div class="simpletxt">
+                            <h3 class="name">{{object.name}}</h3>
+                            <p>{{object.detail|truncatewords:20}} </p>
+                             <h4 class="price"> 1000&euro;</h4>
+                             <button><a href={% url 'product-detail' object.id %}>READ MORE</a></button><br>
+                         
+                        </div>
+                        <div class="stars2">
+                            <div class="glyphicon glyphicon-star"></div>
+                            <div class="glyphicon glyphicon-star"></div>
+                            <div class="glyphicon glyphicon-star"></div>
+                        </div>
+                    </div>
+            </div>	 
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock  %}
+
+

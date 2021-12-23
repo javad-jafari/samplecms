@@ -7,7 +7,7 @@ User = get_user_model()
 
 class Profile(models.Model):
 
-    user = models.OneToOneRel(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     charge = models.PositiveIntegerField(default=0)
     
 
@@ -16,7 +16,7 @@ class Profile(models.Model):
         verbose_name_plural = "Profiles"
 
     def __str__(self):
-        return self.user
+        return self.user.username
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

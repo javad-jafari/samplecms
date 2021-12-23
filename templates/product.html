@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class='container border border-radius'>
+    <p><h1>{{object.name}}
+    </h1></p>
+<img src="{{object.image.url}}" alt="{{object.name}}">
+<p>
+{{object.detail}}
+</p>
+
+<h2>{{object.price}}&euro;</h2>
+
+
+
+
+<form action="" method="post">
+{{form}}
+<input type="submit" value="buy">
+</form>
+</div>
+
+
+
+
+{% endblock %}
