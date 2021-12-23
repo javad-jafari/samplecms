@@ -40,6 +40,7 @@ class BasketItemCreateView(LoginRequiredMixin,FormView):
         quantity = form.cleaned_data.get('quantity') 
         product_object = Product.objects.get(id=product_id)
         basketitem=basket.basketitems.filter(product_id=product_id)
+
         if basketitem.exists():
             basketitem.update(quantity=quantity)
         else:
