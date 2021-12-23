@@ -3,7 +3,8 @@
 <div class="allcontain">
 	<div class="header">
 			<ul class="socialicon">
-				<li><a href="#"><i class="fa fa-shopping-basket"></i></a></li>
+				<li><a href="{% url 'basket' %}"><i class="fa fa-shopping-basket"></i></a></li>
+				<li><a href="{% url 'index' %}"><i class="fa fa-home"></i></a></li>
 
 			</ul>
 			<ul class="givusacall">
@@ -13,7 +14,7 @@
                 {% if request.user.is_authenticated %}
                 <li><a href="{% url 'logout' %}">Logout </a> </li>
                 {% else %}
-                <li><a href="{% url django.contrib.auth.views.login %}?next={{request.path}}">Login</a> </li>
+                <li><a href="{% url 'login' %}?next={{request.path}}">Login</a> </li>
 				<li><a href="{% url 'register' %}"><span class="register">Register</span></a></li>
                 {% endif %}
 			</ul>
