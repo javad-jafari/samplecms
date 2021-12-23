@@ -14,6 +14,12 @@ class Basket(models.Model):
 
     def __str__(self):
         return self.user.username
+    
+    def total_price(self):
+        sum = 0
+        for item in self.basketitems.all():
+            sum += item.price * item.quantity
+        return sum
 
 
 

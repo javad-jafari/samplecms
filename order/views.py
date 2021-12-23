@@ -5,17 +5,23 @@ from shop.forms import ProductForm
 from django.urls import reverse,reverse_lazy
 from django.views.generic.edit import FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import get_object_or_404
 from shop.models import Product
 
 
 class BasketListView(ListView):
-    template_name = "basket.html"
+    template_name = "basket.html"    
 
     def get_queryset(self):
         open_basket = Basket.objects.filter(user_id=self.request.user.id, ordered=False).first()
         if open_basket:
             return open_basket.basketitems.all()
+    
+    def get_context_data(self, **kwargs):
+        context= super().get_context_data(**kwargs)
+        context['open_basket'] = Basket.objects.filter(user_id=self.request.user.id, ordered=False).first()
+        return context
+
+
 
 
 class BasketItemCreateView(LoginRequiredMixin,FormView):
