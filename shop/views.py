@@ -15,8 +15,13 @@ class ProductListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['features_car_1'] = Product.objects.all()[0]
-        context['features_car_2'] = Product.objects.all()[1]
+        try:
+            context['features_car_1'] = Product.objects.all()[0]
+            context['features_car_2'] = Product.objects.all()[1]
+        except:
+            context['features_car_1'] = None
+            context['features_car_2'] = None
+            
         return context
 
 
