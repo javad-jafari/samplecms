@@ -1,23 +1,20 @@
 version: "3.7"
 services:
-  web:
-    build: .
-    command: python manage.py runserver 0.0.0.0:8000
-    restart: always
-    
-    volumes:
-      - ./:/usr/src/app/
-    ports:
-      - 8000:8000
-  
   db:
     image: postgres:13.0-alpine
     volumes:
-      - postgres_data:/var/lib/postgresql/data/
-    environment:
-      - POSTGRES_USER=dj
-      - POSTGRES_PASSWORD=dj
-      - POSTGRES_DB=dj
+      - ./postgres/data:/var/lib/postgresql/data/
+    env_file:
+      - .envdb
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000    
+    volumes:
+      - ./:/usr/src/app/
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    env_file:
+      - .env.dev
 
-volumes:
-  postgres_data:
